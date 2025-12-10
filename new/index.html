@@ -1,0 +1,356 @@
+<?php
+// index.php
+// Simple multi-step landing page.
+// This is a single-entry PHP file (renders the HTML). All form sending is done by JS (fetch) to backend/save.php
+?>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MBBS Abroad Journey</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to MBBS Abroad Journey!</h1>
+
+    <div id="form-wizard" class="wizard">
+<!-- Step 1: Choose Country -->
+<div class="step active" data-step="1">
+    <h2>Choose Your Preferred Country</h2>
+    <div class="options grid country-grid" id="country-options">
+        <!-- === ALL COUNTRY CARDS (same as before - corrected data-value) === -->
+        <button class="country-card option" data-value="Georgia">
+            <div class="country-img-wrap"><img src="assets/countries/georgia.png" class="country-big-img"></div>
+            <div class="country-info">
+                <img src="assets/flags/georgia-flag.webp" class="flag-icon">
+                <span class="country-name">Georgia</span>
+                <p class="country-subtext">10+ Universities</p>
+            </div>
+            <div class="tick"></div>
+        </button>
+
+        <button class="country-card option" data-value="Russia">
+            <div class="country-img-wrap"><img src="assets/countries/russia.png" class="country-big-img"></div>
+            <div class="country-info">
+                <img src="assets/flags/russia-flag.webp" class="flag-icon">
+                <span class="country-name">Russia</span>
+                <p class="country-subtext">13+ Universities</p>
+            </div>
+            <div class="tick"></div>
+        </button>
+
+        <button class="country-card option" data-value="Uzbekistan">
+            <div class="country-img-wrap"><img src="assets/countries/uzbekistan.png" class="country-big-img"></div>
+            <div class="country-info">
+                <img src="assets/flags/uzbekistan-flag.webp" class="flag-icon">
+                <span class="country-name">Uzbekistan</span>
+                <p class="country-subtext">3+ Universities</p>
+            </div>
+            <div class="tick"></div>
+        </button>
+
+        <button class="country-card option" data-value="Egypt">
+            <div class="country-img-wrap"><img src="assets/countries/egypt.png" class="country-big-img"></div>
+            <div class="country-info">
+                <img src="assets/flags/egypt-flag.webp" class="flag-icon">
+                <span class="country-name">Egypt</span>
+                <p class="country-subtext">6+ Universities</p>
+            </div>
+            <div class="tick"></div>
+        </button>
+
+        <button class="country-card option" data-value="Bulgaria">
+            <div class="country-img-wrap"><img src="assets/countries/bulgaria.png" class="country-big-img"></div>
+            <div class="country-info">
+                <img src="assets/flags/bulgaria-flag.webp" class="flag-icon">
+                <span class="country-name">Bulgaria</span>
+                <p class="country-subtext">5+ Universities</p>
+            </div>
+            <div class="tick"></div>
+        </button>
+
+        <button class="country-card option" data-value="Armenia">
+            <div class="country-img-wrap"><img src="assets/countries/armenia.png" class="country-big-img"></div>
+            <div class="country-info">
+                <img src="assets/flags/armenia-flag.webp" class="flag-icon">
+                <span class="country-name">Armenia</span>
+                <p class="country-subtext">1+ University</p>
+            </div>
+            <div class="tick"></div>
+        </button>
+
+        <button class="country-card option" data-value="Hungary">
+            <div class="country-img-wrap"><img src="assets/countries/hungary.png" class="country-big-img"></div>
+            <div class="country-info">
+                <img src="assets/flags/hungary-flag.jpg" class="flag-icon">
+                <span class="country-name">Hungary</span>
+                <p class="country-subtext">1+ University</p>
+            </div>
+            <div class="tick"></div>
+        </button>
+
+        <button class="country-card option" data-value="Moldova">
+            <div class="country-img-wrap"><img src="assets/countries/moldova.png" class="country-big-img"></div>
+            <div class="country-info">
+                <img src="assets/flags/moldova-flag.webp" class="flag-icon">
+                <span class="country-name">Moldova</span>
+                <p class="country-subtext">1+ University</p>
+            </div>
+            <div class="tick"></div>
+        </button>
+
+        <button class="country-card option" data-value="Kazakhstan">
+            <div class="country-img-wrap"><img src="assets/countries/kazakhstan.png" class="country-big-img"></div>
+            <div class="country-info">
+                <img src="assets/flags/kazakhstan-flag.webp" class="flag-icon">
+                <span class="country-name">Kazakhstan</span>
+                <p class="country-subtext">1+ University</p>
+            </div>
+            <div class="tick"></div>
+        </button>
+
+        <button class="country-card option" data-value="Kyrgyzstan">
+            <div class="country-img-wrap"><img src="assets/countries/kyrgyzstan.png" class="country-big-img"></div>
+            <div class="country-info">
+                <img src="assets/flags/kyrgyzstan-flag.webp" class="flag-icon">
+                <span class="country-name">Kyrgyzstan</span>
+                <p class="country-subtext">3+ Universities</p>
+            </div>
+            <div class="tick"></div>
+        </button>
+
+        <button class="country-card option" data-value="Azerbaijan">
+            <div class="country-img-wrap"><img src="assets/countries/azerbaijan.png" class="country-big-img"></div>
+            <div class="country-info">
+                <img src="assets/flags/azerbaijan-flag.webp" class="flag-icon">
+                <span class="country-name">Azerbaijan</span>
+                <p class="country-subtext">1+ University</p>
+            </div>
+            <div class="tick"></div>
+        </button>
+    </div>
+
+    <!-- THIS WAS MISSING — ADD THIS BACK! -->
+    <div class="nav">
+        <button class="next-btn">Next</button>
+    </div>
+</div>
+
+      <!-- Step 2: Intake -->
+      <div class="step" data-step="2">
+        <h2>Which intake are you planning for?</h2>
+        <div class="options" id="intake-options">
+          <button class="option" data-value="Mar 26">Mar '26</button>
+          <button class="option" data-value="Sep 26">Sep '26</button>
+          <button class="option" data-value="Mar 27">Mar '27</button>
+          <button class="option" data-value="Sep 27">Sep '27</button>
+        </div>
+        <div class="nav">
+          <button class="prev-btn">Prev</button>
+          <button class="next-btn">Next</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Parent or Student -->
+      <div class="step" data-step="3">
+        <h2>Are you a parent or student?</h2>
+        <div class="options" id="role-options">
+          <button class="option" data-value="Parent">I'm a parent</button>
+          <button class="option" data-value="Student">I'm a student</button>
+        </div>
+        <div class="nav">
+          <button class="prev-btn">Prev</button>
+          <button class="next-btn">Next</button>
+        </div>
+      </div>
+
+<!-- Step 4: Ask Only Name (Friendly) -->
+<div class="step" data-step="4">
+    <h2>What name do you prefer to go by?</h2>
+    <!-- <p style="color:#555; font-size:16px; margin:20px 0;">We'll use this to personalize your MBBS journey</p> -->
+    
+    <div class="form-group" style="max-width:400px; margin:0 auto;">
+        <input type="text" id="name" placeholder="Enter your name" style="font-size:18px; padding:16px;" />
+        <small class="error-msg" id="name-error"></small>
+    </div>
+
+    <div class="nav">
+        <button class="prev-btn">Prev</button>
+        <button class="next-btn">Continue</button>
+    </div>
+</div>
+
+   <!-- Step 4.5: Personalized Message + Phone + City -->
+<div class="step" data-step="4.5">
+    <div style="text-align:center; margin-bottom:35px; line-height:1.6;">
+        <h2 id="personalized-greeting" 
+            style="display:inline; font-size:20px; color:#e50914; font-weight:700;">
+            Hi there!
+        </h2>
+        <span id="greeting-text" 
+              style="font-size:18px; color:#333; font-weight:500;">
+            Share your contact details and our Expert Counsellors will guide you every step of the way!
+        </span>
+    </div>
+
+    <div class="form-group">
+        <label>Your Phone <span class="required">*</span></label>
+        <input type="text" id="phone" placeholder="Enter 10-digit mobile number" maxlength="10" inputmode="numeric" />
+        <small class="error-msg" id="phone-error"></small>
+    </div>
+    
+    <div class="form-group">
+        <label>Your City <span class="required">*</span></label>
+        <input type="text" id="place" placeholder="Enter your city" />
+        <small class="error-msg" id="city-error"></small>
+    </div>
+
+    <div class="nav">
+        <button class="prev-btn">Prev</button>
+        <button class="next-btn">Next</button>
+    </div>
+</div>
+
+
+<!-- UNIVERSAL FULL-SCREEN CENTERED PRELOADER -->
+<div class="step preloader-step" id="preloader">
+  <div class="preloader-bg"></div>
+  <div class="preloader-overlay"></div>
+  <div class="preloader-content-centered">
+    <div class="loader-circle">
+      <svg class="spinner" width="90" height="90" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+        <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+      </svg>
+    </div>
+    <h2 id="preloader-title" class="preloader-title">Preparing your journey...</h2>
+    <p id="preloader-text" class="preloader-text">Please wait a moment</p>
+  </div>
+</div>
+      
+      <!-- Step 7: Education -->
+      <div class="step" data-step="7">
+        <h2>Great! Let's move to your Education</h2>
+        <div class="options" id="education-options">
+          <button class="option" data-value="10th">10th</button>
+          <button class="option" data-value="11th">11th</button>
+          <button class="option" data-value="12th Pursuing">12th Pursuing</button>
+          <button class="option" data-value="NEET Preparation">NEET Preparation</button>
+        </div>
+        <div class="nav">
+          <button class="prev-btn">Prev</button>
+          <button class="next-btn">Next</button>
+        </div>
+      </div>
+
+<!-- Step 8: University list (depends on country) -->
+<div class="step" data-step="8">
+  <h2>Shortlisted Universities</h2>
+  <!-- DYNAMIC SUBHEADING ADDED HERE -->
+  <p id="university-step-subtitle" style="font-size:18px; color:#333; margin:20px auto; max-width:700px; line-height:1.6; font-weight:500;">
+    Explore top medical universities in <strong id="dynamic-country">Georgia</strong> and begin your global medical career
+  </p>
+  <div id="university-list"></div>
+
+  <!-- ONLY ONE WAY FORWARD: Big counselling button with validation -->
+  <div class="nav" style="justify-content:center; margin-top:40px;">
+    <button id="go-to-counselling" class="next-btn" 
+            style="padding:18px 48px; font-size:16px; font-weight:700; border-radius:14px; background:#e50914; color:white; border:none; box-shadow:0 8px 25px rgba(229,9,20,0.3);">
+      View University Details
+    </button>
+  </div>
+
+  <!-- Only Prev button here — no regular Next button! -->
+  <div class="nav" style="margin-top:30px; justify-content:center;">
+    <button class="prev-btn" style="background:#f5f5f5; color:#333; padding:12px 32px; font-size:16px;">
+      Prev 
+    </button>
+  </div>
+</div>
+
+
+<!-- Step 8.5: University Details -->
+<div class="step" data-step="8.5">
+  <h2 id="uni-detail-title">University Details</h2>
+  <div id="uni-detail-content" style="max-width:700px; margin:20px auto; text-align:left; font-size:16px; line-height:1.6; color:#333;">
+    <!-- Dynamic content: image, name, description -->
+  </div>
+  <p>
+    Maximize your free consultation by sharing more details for better expert guidance.
+  </p>
+  <div class="nav" style="justify-content: center; align-items: center;">
+    <button class="prev-btn">Prev</button>
+    <button class="next-btn">Get Free Counselling to Learn More</button>
+  </div>
+</div>
+
+
+      <!-- Step 9: Financing -->
+      <div class="step" data-step="9">
+        <h2>How would you like to finance your MBBS Abroad Education?</h2>
+        <div class="options" id="finance-options">
+          <button class="option" data-value="Parents/Self Funded">Parents/Self Funded</button>
+          <button class="option" data-value="Parents/Self Funded + Loan">Parents/Self Funded + Loan</button>
+          <button class="option" data-value="Full Education Loan">Full Education Loan - Collateral/Non-Collateral</button>
+          <button class="option" data-value="Partial Scholarship">Looking for partial scholarship</button>
+        </div>
+        <div class="nav">
+          <button class="prev-btn">Prev</button>
+          <button class="next-btn">Next</button>
+        </div>
+      </div>
+    
+
+      <!-- Step 10: Appointment (simple date/time selector) -->
+<div class="step" data-step="10">
+  <h2>Schedule an Appointment (30 min)</h2>
+  <p style="margin-bottom: 10px;">Meet our professionals and take the next step toward your goals</p>
+  
+  <!-- UPDATED: Selected Appointment Confirmation Box - Calendly-like Design -->
+  <div id="selected-appointment" style="display: none; background: white; border: 1px solid #e0e0e0; border-radius: 12px; padding: 20px; margin-top: 20px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); max-width: 400px; margin-left: auto; margin-right: auto; text-align: left;">
+    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+      <div style="background: #e50914; color: white; padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; min-width: 120px; text-align: center;">30 Min Meeting</div>
+      <!-- <div style="width: 20px; height: 20px; border: 2px solid #e50914; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #e50914; font-weight: bold;">✓</div> -->
+    </div>
+    <div id="selected-date-time" style="font-size: 16px; font-weight: 600; color: #333; line-height: 1.4;"></div>
+  </div>
+  
+  <label style="display: block; margin-bottom: 15px; text-align: left;">Select a date: <input type="date" id="appt-date" style="margin-left: 10px; padding: 8px; border-radius: 6px; border: 1px solid #ddd;"></label>
+  <label style="display: block; margin-bottom: 15px; text-align: left;">Select a time:
+    <select id="appt-time" style="margin-left: 10px; padding: 8px; border-radius: 6px; border: 1px solid #ddd;">
+      <option value="">-- choose time --</option>
+      <option>10:30 AM</option>
+      <option>11:30 AM</option>
+      <option>12:30 PM</option>
+      <option>02:30 PM</option>
+      <option>03:30 PM</option>
+      <option>04:30 PM</option>
+    </select>
+  </label>
+  <div class="nav">
+    <button class="prev-btn">Prev</button>
+    <button class="next-btn" id="submit-btn">Submit</button>
+  </div>
+</div>
+
+      <!-- Step 11: Thank You -->
+      <div class="step" data-step="11">
+        <h2>Thank you for Submitting Details!</h2>
+        <p id="thanks-msg">We’ll be in touch shortly with you.</p>
+        <div class="nav">
+          <button id="restart">Start Again</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // small config used by script.js
+    window.APP_CONFIG = {
+      saveEndpoint: 'backend/save.php' // PHP endpoint to receive data and forward to Google Sheet
+    };
+  </script>
+  <script type="module" src="assets/script.js"></script>
+</body>
+</html>
